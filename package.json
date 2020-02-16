@@ -1,0 +1,33 @@
+{
+  "name": "wp-boilerplate",
+  "version": "1.0.0",
+  "description": "WordPress boilerplate theme",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "autoprefixer": "^9.4.2",
+    "node-sass": "latest",
+    "onchange": "^5.2.0",
+    "postcss-cli": "latest"
+  },
+  "scripts": {
+    "build": "npm run build:sass && npm run build:js",
+    "build:sass": "npx rimraf dist/css/*.css && node-sass --output-style=expanded --source-map=true src/sass/styles.scss dist/css/styles.css",
+    "build:js": "npx rimraf dist/js/*.js && npx babel src/js/scripts.js --out-file dist/js/scripts.min.js --no-comments --minified --presets=@babel/preset-env",
+    "watch:sass": "npm run build:sass && postcss dist/css/styles.css --use=autoprefixer --output=dist/css/styles.css",
+    "watch:js": "npx babel src/js/scripts.js --out-file dist/js/scripts.min.js --presets=@babel/preset-env --watch",
+    "start": "onchange \"src/sass/**/*.scss\" -- npm run watch:sass && onchange \"src/js/**/*.js\" -- npm run watch:js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chromadco/wp-clients.git"
+  },
+  "author": "Chromad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chromadco/wp-clients/issues"
+  },
+  "homepage": "https://github.com/chromadco/wp-clients#readme"
+}
